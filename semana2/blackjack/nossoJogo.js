@@ -13,34 +13,16 @@
 console.log("Boas vindas ao jogo de Blackjack!")
 
 // Lógica user
-const cartasUsuario1 = comprarCarta((carta) => {
-    return {
-        valor: carta.valor,
-        texto: carta.texto
-    }
-})
-const cartasUsuario2 = comprarCarta((carta) => {
-    return {
-        valor: carta.valor,
-        texto: carta.texto
-    }
-})
+const cartasUsuario1 = comprarCarta()
+const cartasUsuario2 = comprarCarta()
+
 const cartasTextoUsuarioFinal = cartasUsuario1.texto + cartasUsuario2.texto
 const cartasValorUsuarioFinal = Number(cartasUsuario2.valor) + Number(cartasUsuario1.valor)
 
 // Lógica comp 
-const cartasComputador1 = comprarCarta((carta) => {
-    return {
-        valor: carta.valor,
-        texto: carta.texto
-    }
-})
-const cartasComputador2 = comprarCarta((carta) => {
-    return {
-        valor: carta.valor,
-        texto: carta.texto
-    }
-})
+const cartasComputador1 = comprarCarta()
+const cartasComputador2 = comprarCarta()
+
 const cartasTextoComputadorFinal = cartasComputador1.texto + cartasComputador2.texto
 const cartasValorComputadorFinal = Number(cartasComputador2.valor) + Number(cartasComputador1.valor)
 
