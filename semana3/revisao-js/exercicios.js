@@ -157,7 +157,13 @@ console.log(imprimeChamada())
 
 // EXERCÍCIO 14
 function criaRetangulo(lado1, lado2) {
-
+    const retanguloCriado = {
+        largura: lado1,
+        altura: lado2,
+        perimetro: 2 * (lado1 + lado2),
+        area: lado1 * lado2
+    }
+    return retanguloCriado
 }
 
 // EXERCÍCIO 15
