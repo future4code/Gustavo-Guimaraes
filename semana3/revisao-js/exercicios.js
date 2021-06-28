@@ -68,6 +68,15 @@ function checaTriangulo(a, b, c) {
     // return 'Escaleno'
     // return 'Equilátero'
     // return 'Isósceles'
+    const equilatero = ((a === b) && (b === c) && (c === a))
+    const escaleno = ((a !== b) && (b !== c) && (c !== a))
+    if (equilatero) {
+        return "Equilátero"
+    } else if (escaleno) {
+        return "Escaleno"
+    } else {
+        return "Isósceles"
+    }
 }
 
 // EXERCÍCIO 09
