@@ -134,19 +134,26 @@ function ordenaArray(array) {
 
 // EXERCÍCIO 12
 function filmeFavorito() {
-    const filmeFavorito = {
+    const filmeFavorito1 = {
         nome: "O Diabo Veste Prada",
         ano: 2006,
         diretor: "David Frankel",
         atores: ["Meryl Streep", "Anne Hathaway", "Emily Blunt", "Stanley Tucci"]
     }
-    return filmeFavorito
+    return filmeFavorito1
 }
 
 // EXERCÍCIO 13
 function imprimeChamada() {
-    // "Venha assistir ao filme NOME_DO_FILME, de ANO, dirigido por DIRECAO e estrelado por ELENCO."
+    const filmeFavorito1 = {
+        nome: "O Diabo Veste Prada",
+        ano: 2006,
+        diretor: "David Frankel",
+        atores: ["Meryl Streep", " Anne Hathaway", " Emily Blunt", " Stanley Tucci"]
+    }
+    return `Venha assistir ao filme ${filmeFavorito1.nome}, de ${filmeFavorito1.ano}, dirigido por ${filmeFavorito1.diretor} e estrelado por ${filmeFavorito1.atores}.`
 }
+console.log(imprimeChamada())
 
 // EXERCÍCIO 14
 function criaRetangulo(lado1, lado2) {
