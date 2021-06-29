@@ -168,12 +168,20 @@ function criaRetangulo(lado1, lado2) {
 
 // EXERCÍCIO 15
 function anonimizaPessoa(pessoa) {
-
+    return {
+        nome: "ANÔNIMO",
+        idade: pessoa.idade,
+        email: pessoa.email,
+        endereco: pessoa.endereco
+    }
 }
 
 // EXERCÍCIO 16A
 function maioresDe18(arrayDePessoas) {
-
+    const arrayAdultos = arrayDePessoas.filter((elemento) => {
+        return elemento.idade >= 18
+    })
+    return arrayAdultos
 }
 
 // EXERCÍCIO 16B
