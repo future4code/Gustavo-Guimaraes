@@ -222,12 +222,24 @@ function verificaParidade(array) {
 
 // EXERCÍCIO 18A
 function retornaPessoasAutorizadas(pessoas) {
-
+    let pessoasAutorizadas = []
+    for (const pessoa of pessoas) {
+        if (pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60) {
+            pessoasAutorizadas.push(pessoa)
+        }
+    }
+    return pessoasAutorizadas
 }
 
 // EXERCÍCIO 18B
 function retornaPessoasNaoAutorizadas(pessoas) {
-
+    let pessoasNaoAutorizadas = []
+    for (const pessoa of pessoas) {
+        if (pessoa.altura < 1.5 || pessoa.idade <= 14 || pessoa.idade >= 60) {
+            pessoasNaoAutorizadas.push(pessoa)
+        }
+    }
+    return pessoasNaoAutorizadas
 }
 
 // EXERCÍCIO 19A
