@@ -1,0 +1,33 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: aliceblue;
+}
+
+nav {
+    background-color: #0d121a;
+}
+
+header {
+    background-color: aliceblue;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.nav-bar {
+    font-size: medium;
+    color: aliceblue;
+    margin: 0px 4vw;
+}
+
+h2 {
+    color: darkblue;
+    background-color: aliceblue;
+    margin: 40px;
+    border: outset;
+    border-radius: 3px;
+    text-align: center;
+}
+
+div {
+    margin: 10px;
+}

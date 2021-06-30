@@ -1,0 +1,47 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: aliceblue;
+}
+
+nav {
+    background-color: #0d121a;
+}
+
+header {
+    background-color: aliceblue;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.nav-bar {
+    font-size: medium;
+    color: aliceblue;
+    margin: 0px 4vw;
+}
+
+h2 {
+    color: darkblue;
+    text-align: center;
+}
+
+.imagem-do-estoque {
+    width: 30vw;
+    height: 25vw;
+}
+
+table {
+    background-color: rgb(255, 253, 253);
+    margin: auto;
+    border: 3px solid black;
+}
+
+th {
+    background-color: rgb(255, 253, 253);
+    border: 1px solid black;
+}
+
+td {
+    background-color: rgb(255, 253, 253);
+    border: 1px solid black;
+    padding: 20px;
+}
