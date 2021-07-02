@@ -4,11 +4,13 @@
     box-sizing: border-box;
 }
 
-body {
-    background-image: url(/img/codigo2.png);
+
+/* .principal {
+    background-image: url(/img/coding.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
+ */
 
 h1,
 h2,
@@ -44,6 +46,9 @@ main {
     padding-top: 50px;
     font-size: medium;
     border: 1px solid #00008b;
+    border-bottom: none;
+    border-top: none;
+    margin-bottom: 100px;
 }
 
 main p {
@@ -81,9 +86,11 @@ footer {
     margin: auto;
     padding: 10px;
     border: 2px solid #00006f;
+    border-top: none;
+    border-bottom: none;
 }
 
-.habilidades {
+#habilidades {
     width: 20%;
     float: left;
     text-align: justify;
@@ -91,12 +98,12 @@ footer {
     padding-right: 20px;
 }
 
-.projetos-pessoais {
+#projetos {
     margin-left: 30%;
     height: 0px;
 }
 
-.experiencias {
+#experiencias {
     height: 150px;
     width: 500px;
     position: relative;
@@ -104,7 +111,13 @@ footer {
     border: 1px solid #00008b;
 }
 
-.experiencias h4,
-.habilidades h4 {
+#experiencias h4,
+#habilidades h4 {
     text-align: center;
+}
+
+#lojinha {
+    position: inherit;
+    left: 350px;
+    top: -255px;
 }

@@ -12,20 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@1,300&family=Viga&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="principal">
     <header>
         <nav>
             <ul class="menu">
                 <li><a href="#">Fale comigo!</a></li>
-                <li><a href=""> Sobre mim</a></li>
-                <li><a href=""> Projetos </a></li>
+                <li><a href="#sobre-mim"> Sobre mim</a></li>
+                <li><a href="#projetos"> Projetos </a></li>
 
-                <li><a href=""> Habilidades</a></li>
-                <li><a href=""> Experiências </a></li>
+                <li><a href="#habilidades"> Habilidades</a></li>
+                <li><a href="#experiencias"> Experiências </a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main id="sobre-mim">
         <h1>Uma pequena introdução a minha pessoa</h1>
         <p>Olá! Sou Gustavo Carvalho Guimarães e é um prazer conhecê-lo.</p>
         <p>Atualmente, me encontro trilhando o caminho para me tornar um desenvolvedor Full Stack e tudo isso graças a Labenu! </p>
@@ -36,10 +36,14 @@
         <img src="" alt="Foto-pessoal">
     </main>
     <section class="container-experiencias">
-        <div class="projetos-pessoais">
+        <div class="projetos-pessoais" id="projetos">
             <h2>Meus projetos pessoais</h2>
+            <h5>Blackjack</h5>
+            <a href="./blackjack.html"><img src="./img/blackjack.jpg" alt="jogo de blackjack"></a>
+            <!-- <h5 class="lojinha">Lojinha de Produtos</h5>
+            <a href="" class="lojinha">><img src="" alt="imagem do site da loja criada"></a> -->
         </div>
-        <div class="habilidades">
+        <div id="habilidades">
             <h4>Habilidades Técnicas e Comportamentais</h4>
             <ul>
                 <li><strong>Lifelong learning </strong>: A capacidade e a vontade de continuar aprendendo sempre é essencial neste mundo em constante mudança. <br> Por isso busco sempre correr atrás de novos materiais da tecnologia, procurando de forma autônoma
@@ -49,7 +53,7 @@
             </ul>
         </div>
     </section>
-    <div class="experiencias">
+    <div id="experiencias">
         <h4>Experiências profissionais e acadêmicas</h4>
         <ul>
             <li><strong>Labenu</strong>: Dev Full Stack (a ser finalizado em dez-2021)</li>
@@ -58,6 +62,7 @@
         </ul>
     </div>
     <form action="#">
+        <p>Formulário para contato</p>
         <label for="nome" class="label">Nome:</label>
         <input type="text" name="nome" id="nome" placeholder="Nome">
         <label for="email" class="label">Email:</label>
