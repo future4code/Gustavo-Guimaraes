@@ -1,0 +1,36 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: aliceblue;
+}
+
+#nome-slogan {
+    background-color: aliceblue;
+    padding: 5px;
+    text-align: center;
+}
+
+nav {
+    background-color: #0d121a;
+}
+
+.nav-bar {
+    font-size: large;
+    color: aliceblue;
+    margin: 0px 8vw;
+}
+
+#besouros {
+    display: block;
+    margin: auto;
+}
+
+#texto-central {
+    margin: 50px;
+    text-align: center;
+}
+
+.redes-sociais {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
