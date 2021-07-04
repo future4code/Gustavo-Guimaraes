@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gustavo Carvalho</title>
-    <!--   <link rel="stylesheet" type="text/css" href="./styles.css"> -->
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +14,12 @@
 
 <body class="principal">
     <header>
+        <p>Gustavo Carvalho Guimarães - Futuro desenvolvedor Full Stack</p>
         <nav>
             <ul class="menu">
-                <li><a href="#">Fale comigo!</a></li>
+                <li><a href="#fale-comigo">Fale comigo!</a></li>
                 <li><a href="#sobre-mim"> Sobre mim</a></li>
                 <li><a href="#projetos"> Projetos </a></li>
-
                 <li><a href="#habilidades"> Habilidades</a></li>
                 <li><a href="#experiencias"> Experiências </a></li>
             </ul>
@@ -28,22 +27,17 @@
     </header>
     <br>
     <main id="sobre-mim">
-        <h1>Uma pequena introdução a minha pessoa</h1>
+        <h1>WELCOME, Stranger!</h1>
         <p>Olá! Sou Gustavo Carvalho Guimarães e é um prazer conhecê-lo.</p>
         <p>Atualmente, me encontro trilhando o caminho para me tornar um desenvolvedor Full Stack e tudo isso graças a Labenu! </p>
-        <p> Por enquanto o meu enfoque é front-end, e já tenho (algum) domínio HMTL, CSS e Javascrip (mas estou sempre aprendendo).
-            <!--  Além do mais, sou graduado em Relações Internacionais e tenho uma boa experiência em entender e acolher demandas. -->
-        </p>
-
-        <img src="" alt="Foto-pessoal">
+        <p> Por enquanto o meu enfoque é front-end, e já tenho (algum) domínio HMTL, CSS e Javascrip (mas estou sempre aprendendo).</p>
+        <img src="./img/eu.jpg" alt="Foto minha de rosto">
     </main>
-    <section class="container-experiencias">
+    <section class="bloco-projeto-habilidade">
         <div class="projetos-pessoais" id="projetos">
             <h2>Meus projetos pessoais</h2>
             <h5>Blackjack</h5>
-            <a href="./blackjack.html"><img src="./img/blackjack.jpg" alt="jogo de blackjack"></a>
-            <!-- <h5 class="lojinha">Lojinha de Produtos</h5>
-            <a href="" class="lojinha">><img src="" alt="imagem do site da loja criada"></a> -->
+            <a href="./blackjack.html" target="_blank"><img src="./img/blackjack.jpg" alt="jogo de blackjack"></a>
         </div>
         <div id="habilidades">
             <h4>Habilidades Técnicas e Comportamentais</h4>
@@ -55,29 +49,32 @@
             </ul>
         </div>
     </section>
-    <div id="experiencias">
-        <h4>Experiências profissionais e acadêmicas</h4>
-        <ul>
-            <li><strong>Labenu</strong>: Dev Full Stack (a ser finalizado em dez-2021)</li>
-            <li><strong>UNILA</strong>: Graduação em Relações Internacionais - 2019</li>
-            <li><strong>Hostel Che Lagarto</strong>: Recepcionista - 2020-2021</li>
-        </ul>
+    <div class="bloco-experiencia-contato">
+        <div id="experiencias">
+            <h4>Experiências profissionais e acadêmicas</h4>
+            <ul>
+                <li><strong>Labenu</strong>: Dev Full Stack (a ser finalizado em dez-2021)</li>
+                <li><strong>UNILA</strong>: Graduação em Relações Internacionais - 2019</li>
+                <li><strong>Hostel Che Lagarto</strong>: Recepcionista - 2020-2021</li>
+            </ul>
+        </div>
+        <form action="#" class="formulario" id="fale-comigo">
+            <p>Entre em contato comigo!</p>
+            <label for="nome" class="label">Nome:</label>
+            <input type="text" name="nome" id="nome" placeholder="Nome">
+            <label for="email" class="label">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Email">
+            <label for="text" class="label">Motivo do contato:</label>
+            <input type="text" name="text" id="text" placeholder="Motivo da mensagem">
+            <button type="submit" id="botao-enviar">Enviar</button>
+        </form>
     </div>
-    <form action="#">
-        <p>Formulário para contato</p>
-        <label for="nome" class="label">Nome:</label>
-        <input type="text" name="nome" id="nome" placeholder="Nome">
-        <label for="email" class="label">Email:</label>
-        <input type="email" name="email" id="email" placeholder="Email">
-        <label for="text" class="label">Motivo do contato:</label>
-        <input type="text" name="text" id="text" placeholder="Motivo da mensagem">
-        <button type="submit" id="botao-enviar">Enviar</button>
-    </form>
     <footer>
         <h4>Redes sociais</h4>
-        <a href="https://www.linkedin.com/in/gustavo-carvalho-guimar%C3%A3es/"> <img src="./img/linkedin.jpg" alt="Linkedin" class="imagem-redes"> </a>
-        <a href="https://github.com/GustavoCarv"> <img src="./img/github.jpg" alt="Github" class="imagem-redes"> </a>
-        <a href="https://www.facebook.com/GuCarvalhoG/"> <img src="./img/facebook.jpg" alt="Facebook" class="imagem-redes"> </a>
+        <a href="https://www.linkedin.com/in/gustavo-carvalho-guimar%C3%A3es/" target="_blank"> <img src="./img/linkedin.jpg" alt="Linkedin" class="imagem-redes"> </a>
+        <a href="https://github.com/GustavoCarv" target="_blank"> <img src="./img/github.jpg" alt="Github" class="imagem-redes"> </a>
+        <a href="https://www.facebook.com/GuCarvalhoG/" target="_blank"> <img src="./img/facebook.jpg" alt="Facebook" class="imagem-redes"> </a>
+        <p><strong>Desenvolvido por Gustavo Carvalho Guimarães</strong></p>
     </footer>
 
 </body>
