@@ -13,23 +13,50 @@ const MainContainer = styled.div`
   align-items: center;
 `
 
+
+
 class App extends React.Component {
+
+  state = {
+    posts: [
+      {
+        nomeUsuario: 'paulinha',
+        fotoPost:'https://picsum.photos/50/50',
+        fotoUsuario: 'https://picsum.photos/200/150',
+      },
+      {
+        nomeUsuario:'Jorgito',
+        fotoUsuario:FaceJhin,
+        fotoPost:DarkJhin
+      },
+      {
+        nomeUsuario: 'Claudete',
+        fotoUsuario: AnotherJhin,
+        fotoPost: AlternativeJhin
+      }
+    ]
+  }
+
   render() {
+
+    let postComponente = this.state.posts.map((post, index) => {
+      return (
+        <Post key={index}
+        nomeUsuario={this.state.postsposts.nomeUsuario}
+        fotoUsuario={this.state.posts.fotoUsuario}
+        fotoPost={this.state.posts.fotoPost}
+      />
+      )
+    })
+
+
     return (
       <div>
         <MainContainer>
-          <Post
-            nomeUsuario={'paulinha'}
-            fotoUsuario={'https://picsum.photos/50/50'}
-            fotoPost={'https://picsum.photos/200/150'}
-          />
+          <Post>  </Post>
         </MainContainer>
         <MainContainer>
-          <Post
-            nomeUsuario={'Jorgito'}
-            fotoUsuario={FaceJhin}
-            fotoPost={DarkJhin}
-          />
+
         </MainContainer>
         <MainContainer>
           <Post

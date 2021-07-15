@@ -7,6 +7,12 @@ import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import { SecaoComentario } from '../SecaoComentario/SecaoComentario'
+import App from '../../App'
+import FaceJhin from './img/face_dark_jhin.jpg'
+import DarkJhin from './img/dark_cosmic_jhin.jpg'
+import AnotherJhin from './img/card_dark_jhin.jpg'
+import AlternativeJhin from './img/alternative_dark_jhin.jpg'
+
 
 const PostContainer = styled.div`
   border: 1px solid gray;
@@ -94,29 +100,34 @@ class Post extends React.Component {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario} />
     }
 
-    return <PostContainer>
-      <PostHeader>
-        <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'} />
-        <p>{this.props.nomeUsuario}</p>
-      </PostHeader>
-
-      <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'} />
-
-      <PostFooter>
-        <IconeComContador
-          icone={iconeCurtida}
-          onClickIcone={this.onClickCurtida}
-          valorContador={this.state.numeroCurtidas}
-        />
-
-        <IconeComContador
-          icone={iconeComentario}
-          onClickIcone={this.onClickComentario}
-          valorContador={this.state.numeroComentarios}
-        />
-      </PostFooter>
-      {componenteComentario}
-    </PostContainer>
+    const postComponents = this.state.posts.map((post) => {
+      return (
+          
+        <PostContainer>
+        <PostHeader>
+          <UserPhoto src={posts.fotoUsuario} alt={'Imagem do usuario'} />
+          <p>{posts.nomeUsuario}</p>
+        </PostHeader>
+  
+        <PostPhoto src={posts.fotoPost} alt={'Imagem do post'} />
+  
+        <PostFooter>
+          <IconeComContador
+            icone={iconeCurtida}
+            onClickIcone={this.onClickCurtida}
+            valorContador={this.state.numeroCurtidas}
+          />
+  
+          <IconeComContador
+            icone={iconeComentario}
+            onClickIcone={this.onClickComentario}
+            valorContador={this.state.numeroComentarios}
+          />
+        </PostFooter>
+        {componenteComentario}
+      </PostContainer>
+      )
+    })
   }
 }
 
