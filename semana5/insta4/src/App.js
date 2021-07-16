@@ -34,40 +34,86 @@ class App extends React.Component {
         fotoUsuario: AnotherJhin,
         fotoPost: AlternativeJhin
       }
-    ]
+      ],
+      valorInputUsuario: "",
+      valorInputFoto: "",
+      valorInputPost: ""
+
+  }
+
+
+  onChangeInputUsuario = (event) => {
+    this.setState({valorInputUsuario: event.target.value })
+  }
+
+  onChangeInputFoto = (event) => {
+    this.setState({valorInputFoto: event.target.value })
+  }
+
+  onChangeInputPost = (event) => {
+    this.setState({valorInputPost: event.target.value })
+  }
+  
+  adicionarPost = () => {
+    const novoPost = {
+      nomeUsuario: this.state.valorInputUsuario,
+      fotoUsuario: this.state.valorInputFoto,
+      fotoPost:this.state.valorInputPost
+    }
+    const novosPosts = [...this.state.posts, novoPost]
+    this.setState({
+      posts: novosPosts,
+      valorInputUsuario: "",
+      valorInputFoto: "",
+      valorInputPost: ""
+    })
+
+/*     this.setState({posts:[...this.state.posts, novoPost] }) */
   }
 
   render() {
 
-    let postComponente = this.state.posts.map((post, index) => {
+    let novoPost = this.state.posts.map((umPost) => {
       return (
-        <Post key={index}
-        nomeUsuario={this.state.postsposts.nomeUsuario}
-        fotoUsuario={this.state.posts.fotoUsuario}
-        fotoPost={this.state.posts.fotoPost}
-      />
+        <div>
+          <MainContainer>
+            <Post
+             fotoPost = {umPost.fotoPost}
+             fotoUsuario = {umPost.fotoUsuario}
+             nomeUsuario = {umPost.nomeUsuario}
+            />
+          </MainContainer>
+        </div>
       )
     })
-
-
+    
+    
     return (
-      <div>
-        <MainContainer>
-          <Post>  </Post>
-        </MainContainer>
-        <MainContainer>
+      <MainContainer>
+      {novoPost}
+        <input
+         value={this.state.valorInputUsuario}
+         onChange={this.onChangeInputUsuario}
+         placeholder={"Nome de Usuario"}
+        />
+        <input
+         value={this.state.valorInputFoto}
+         onChange={this.onChangeInputFoto}
+         placeholder={"Foto de Perfil"}
+         type = {Image}
+        />
+        <input
+         value={this.state.valorInputPost}
+         onChange={this.onChangeInputPost}
+         placeholder={"Foto do post"}
+         type = {Image}
+        />
+        <button onClick={this.adicionarPost}>Adicionar</button>
+     </MainContainer>
+      )
 
-        </MainContainer>
-        <MainContainer>
-          <Post
-            nomeUsuario={'Claudete'}
-            fotoUsuario={AnotherJhin}
-            fotoPost={AlternativeJhin}
-          />
-        </MainContainer>
-      </div>
-    );
-  }
+    
+  } 
 }
 
 export default App;
