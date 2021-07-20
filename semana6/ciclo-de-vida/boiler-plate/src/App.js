@@ -21,33 +21,63 @@ const InputsContainer = styled.div`
 
 class App extends React.Component {
   state = {
-    tarefas: [],
+    tarefas: [{
+      id: Date.now(), // Explicação abaixo
+      texto: 'Texto da tarefa',
+      completa: false // Indica se a tarefa está completa (true ou false)
+    },
+    {
+      id: Date.now(),
+      texto: 'Texto da segunda tarefa',
+      completa: true // Indica se a tarefa está completa (true ou false)
+    },
+    ],
     inputValue: '',
-    filtro: ''
+    filtro: ""
   }
 
-  componentDidUpdate() {
-
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tarefas !== this.state.tarefas) {
+      localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas))
+    }
   };
 
-  componentDidMount() {
-
+  componentDidMount(prevProps, prevState) {
+    const listaAtualizada = localStorage.getItem(JSON.parse("tarefas"));
+    this.setState({ tarefas: listaAtualizada })
   };
 
   onChangeInput = (event) => {
-
+    this.setState({ inputValue: event.target.value })
   }
 
   criaTarefa = () => {
-
+    const novaTarefa = {
+      id: Date.now(),
+      texto: this.state.inputValue,
+      completa: false
+    }
+    const novasTarefas = [...this.state.tarefas, novaTarefa]
+    this.setState({ tarefas: novasTarefas })
   }
 
   selectTarefa = (id) => {
-
+    const listaTarefas = this.state.tarefas.map((tarefa) => {
+      if (id === tarefa.id) {
+        const mudaEstado = {
+          ...tarefa,
+          completa: !tarefa.completa
+        }
+        return mudaEstado
+      } else {
+        return tarefa
+      }
+    })
+    this.setState({ tarefas: listaTarefas })
   }
 
   onChangeFilter = (event) => {
-
+    this.setState({ filtro: event.target.value })
   }
 
   render() {
