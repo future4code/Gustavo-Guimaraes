@@ -25,13 +25,13 @@ class App extends React.Component {
   pagshowed = () => {
     switch (this.state.etapa) {
       case 1: 
-      return {Pagina1};
+      return <Pagina1 />;
       case 2:
-      return {Pagina2};
+      return <Pagina2 />;
       case 3: 
-      return {Pagina3};
+      return <Pagina3 />;
       case 4: 
-      return {Final};
+      return <Final />;
     }
     }
 
@@ -47,17 +47,11 @@ class App extends React.Component {
 
   render () {
 
-    const etapaComponente = this.state.etapa.map((pag) => {
-      return (
-        
-      );
-    })
-
-
-
     return (
       <div>
-        <BotaoNext onClick={this.onClickPageChange}>Próxima etapa</BotaoNext>
+        {this.pagshowed()}
+        {this.state.etapa !== 4 && (<BotaoNext onClick={this.onClickPageChange}>Próxima etapa</BotaoNext>
+        )}
       </div>
 
 
