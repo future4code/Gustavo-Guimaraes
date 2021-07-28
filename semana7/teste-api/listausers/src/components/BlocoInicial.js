@@ -2,6 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+const BlocoPrincipal = styled.div`
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const BlocoInputs = styled.div`
   border: 1px solid black;
   height: 200px;
@@ -32,21 +40,63 @@ const BlocoInputs = styled.div`
 `;
 
 class BlocoInicial extends React.Component {
+  state = {
+    valorNome: "",
+    valorEmail: "",
+  };
+
+  criarListaUsuarios = () => {
+    const url1 =
+      "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
+
+    const body = {
+      name: this.state.valorNome,
+      email: this.state.valorEmail,
+    };
+
+    axios
+      .post(url1, body, {
+        headers: {
+          Authorization: "gustavo-guimaraes-lovelace",
+        },
+      })
+      .then(() => {
+        alert("Usuário adicionado");
+        this.setState({ valorNome: "", valorEmail: "" });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+  mudaNome = (event) => {
+    this.setState({ valorNome: event.target.value });
+  };
+
+  mudaEmail = (event) => {
+    this.setState({ valorEmail: event.target.value });
+  };
+
   render() {
     return (
-      <BlocoInputs>
-        <div>
-          <label>Nome:</label>
-          <input value={this.props.nome} onChange={this.props.mudaNome} />
-        </div>
-        <div>
-          <label>E-mail:</label>
-          <input value={this.props.email} onChange={this.props.mudaEmail} />
-        </div>
-        <div>
-          <button onClick={this.props.criarListaUsuarios}>Salvar</button>
-        </div>
-      </BlocoInputs>
+      <div>
+        <button onClick={this.props.mudaPag}>Lista De Cadastrados</button>
+        <BlocoPrincipal>
+          <BlocoInputs>
+            <div>
+              <label>Nome:</label>
+              <input value={this.state.valorNome} onChange={this.mudaNome} />
+            </div>
+            <div>
+              <label>E-mail:</label>
+              <input value={this.state.valorEmail} onChange={this.mudaEmail} />
+            </div>
+            <div>
+              <button onClick={this.criarListaUsuarios}>Salvar</button>
+            </div>
+          </BlocoInputs>
+        </BlocoPrincipal>
+      </div>
     );
   }
 }
