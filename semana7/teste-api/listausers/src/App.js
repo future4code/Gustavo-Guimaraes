@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import BlocoInicial from "./components/BlocoInicial";
 
 const BlocoPrincipal = styled.div`
   position: absolute;
@@ -12,13 +13,14 @@ const BlocoPrincipal = styled.div`
 
 const BlocoInputs = styled.div`
   border: 1px solid black;
-  height: 200px;
+  height: 100%;
   width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: aliceblue;
+  padding: 10px;
 
   div {
     margin: 10px;
@@ -39,16 +41,43 @@ const BlocoInputs = styled.div`
   }
 `;
 
+const BotaoAtualizado = styled.button`
+  position: absolute;
+  right: 0;
+`;
+
 class App extends React.Component {
   state = {
     valorNome: "",
     valorEmail: "",
     listaUsuarios: [],
+    pagInicial: true,
+  };
+
+  mudaPag = () => {
+    this.setState({ pagInicial: !this.state.pagInicial });
   };
 
   componentDidMount() {
     this.pegarListaUsuarios();
   }
+
+  deletarUsuario = (id) => {
+    const url3 = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`;
+
+    axios
+      .delete(url3, {
+        headers: {
+          Authorization: "gustavo-guimaraes-lovelace",
+        },
+      })
+      .then(() => {
+        alert("Você deletou esse usuário");
+      })
+      .catch(() => {
+        alert("Houve um erro para deletar o usuário");
+      });
+  };
 
   pegarListaUsuarios = () => {
     const ulr2 =
@@ -61,10 +90,15 @@ class App extends React.Component {
         },
       })
       .then((res) => {
-        this.setState({ listaUsuarios: res });
+        this.setState({
+          listaUsuarios: res.data.map((usuario) => {
+            return usuario;
+          }),
+        });
+        console.log(this.state.listaUsuarios);
       })
       .catch((erro) => {
-        alert(erro);
+        alert("Deu erro", erro);
       });
   };
 
@@ -83,7 +117,7 @@ class App extends React.Component {
           Authorization: "gustavo-guimaraes-lovelace",
         },
       })
-      .then((resp) => {
+      .then(() => {
         alert("Usuário adicionado");
         this.setState({ valorNome: "", valorEmail: "" });
       })
@@ -102,26 +136,48 @@ class App extends React.Component {
 
   render() {
     const listaDeUsers = this.state.listaUsuarios.map((usuario) => {
-      return <p>{usuario}</p>;
+      return (
+        <div>
+          <li key={usuario.id}>{usuario.name}</li>
+          <button
+            onClick={() => {
+              this.deletarUsuario(usuario.id);
+            }}
+          >
+            deletar
+          </button>
+        </div>
+      );
     });
-    console.log(this.state.listaUsuarios);
+    if (this.state.pagInicial) {
+      return (
+        <div>
+          <button onClick={this.mudaPag}>Lista De Cadastrados</button>
+          <BlocoPrincipal className="App">
+            <BlocoInicial
+              nome={this.state.valorNome}
+              email={this.state.valorEmail}
+              mudaNome={this.mudaNome}
+              mudaEmail={this.mudaEmail}
+              criarListaUsuarios={this.criarListaUsuarios}
+            />
+          </BlocoPrincipal>
+        </div>
+      );
+    }
     return (
-      <BlocoPrincipal className="App">
-        <BlocoInputs>
-          <div>
-            <label>Nome:</label>
-            <input value={this.state.valorNome} onChange={this.mudaNome} />
-          </div>
-          <div>
-            <label>E-mail:</label>
-            <input value={this.state.valorEmail} onChange={this.mudaEmail} />
-          </div>
-          <div>
-            <button onClick={this.criarListaUsuarios}>Salvar</button>
-          </div>
-        </BlocoInputs>
-        {listaDeUsers}
-      </BlocoPrincipal>
+      <div>
+        <button onClick={this.mudaPag}>Lista para Cadastros</button>
+        <BotaoAtualizado onClick={this.pegarListaUsuarios}>
+          Atualizar Lista
+        </BotaoAtualizado>
+        <BlocoPrincipal>
+          <BlocoInputs>
+            <h3>Usuários Cadastrados:</h3>
+            {listaDeUsers}
+          </BlocoInputs>
+        </BlocoPrincipal>
+      </div>
     );
   }
 }
