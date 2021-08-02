@@ -1,12 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import TelaDetalhe from "./TelaDetalhes";
+
+const BlocoPrincipal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75vw;
+  height: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+  border: 1px solid;
+
+  button {
+    margin: 5px;
+  }
+`;
+
+const BlocoPlaylists = styled.span`
+  border: 1px solid gray;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
 
 class TelaPlaylists extends React.Component {
   state = {
     playlists: [],
     musicas: [],
     pagDetalhes: false,
+    playlistId: "",
   };
 
   componentDidMount() {
@@ -28,7 +53,7 @@ class TelaPlaylists extends React.Component {
         this.setState({ playlists: resp.data.result.list });
       })
       .catch((erro) => {
-        alert(erro);
+        alert(erro.response);
       });
   };
 
@@ -47,7 +72,7 @@ class TelaPlaylists extends React.Component {
         this.listaPlaylists();
       })
       .catch((erro) => {
-        alert(erro);
+        alert(erro.response);
       });
   };
 
@@ -65,32 +90,34 @@ class TelaPlaylists extends React.Component {
         this.setState({
           musicas: resp.data.result.tracks,
         });
-        this.renderizaPagDetalhes();
+        this.renderizaPagDetalhes(id);
       })
       .catch((erro) => {
-        alert(erro);
+        /* alert(erro); */
+        console.log(erro);
       });
   };
 
-  renderizaPagDetalhes = () => {
-    this.setState({ pagDetalhes: !this.state.pagDetalhes });
+  renderizaPagDetalhes = (id) => {
+    this.setState({
+      pagDetalhes: !this.state.pagDetalhes,
+      playlistId: id,
+    });
+    console.log(this.state.playlistId);
   };
 
   render() {
-    const todasAsMusicas = this.state.musicas.map((musica) => {
-      return <p>{musica.name}</p>;
-    });
     const todasAsPlaylists = this.state.playlists.map((playlist) => {
       return (
-        <div>
-          <button
+        <BlocoPlaylists>
+          <span
             onClick={() => {
               this.listaDeMusicas(playlist.id);
             }}
+            key={playlist.id}
           >
-            Detalhes
-          </button>
-          <span key={playlist.id}>{playlist.name}</span>
+            {playlist.name}
+          </span>
           <button
             onClick={() => {
               this.deletarPlaylist(playlist.id);
@@ -98,31 +125,27 @@ class TelaPlaylists extends React.Component {
           >
             X
           </button>
-        </div>
+        </BlocoPlaylists>
       );
     });
-    const playlistCerta = this.state.playlists.filter((id) => {
-      if (id === id.id) {
-        return <div>{id.name}</div>;
-      }
-    });
-
-    //Usar o método searchPlaylist
 
     if (this.state.pagDetalhes) {
       return (
-        <div>
-          <button onClick={this.renderizaPagDetalhes}>voltar</button>
-          <div>{playlistCerta}</div>
-          {this.state.pagDetalhes && todasAsMusicas}
-        </div>
+        <TelaDetalhe
+          renderizaPagDetalhes={this.renderizaPagDetalhes}
+          pagDetalhes={this.state.pagDetalhes}
+          playlist={this.state.playlists}
+          musicas={this.state.musicas}
+          listaDeMusicas={this.listaDeMusicas}
+          playlistId={this.state.playlistId}
+        />
       );
     }
     return (
-      <div>
-        <div>Playlists: </div>
+      <BlocoPrincipal>
+        <h1>Playlists: </h1>
         {todasAsPlaylists}
-      </div>
+      </BlocoPrincipal>
     );
   }
 }
