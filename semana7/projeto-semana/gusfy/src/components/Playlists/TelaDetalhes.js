@@ -88,6 +88,9 @@ class TelaDetalhe extends React.Component {
         <div>
           <TelaAdicionarMusica
             mudaPagAdicionaMusica={this.mudaPagAdicionaMusica}
+            playlistId={this.props.playlistId}
+            listaDeMusicas={this.props.listaDeMusicas}
+            playlist={this.props.playlist}
           />
         </div>
       );

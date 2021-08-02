@@ -94,7 +94,6 @@ class TelaPlaylists extends React.Component {
       })
       .catch((erro) => {
         /* alert(erro); */
-        console.log(erro);
       });
   };
 
