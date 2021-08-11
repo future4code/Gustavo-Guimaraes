@@ -56,10 +56,59 @@ function Perfis() {
           bio: resp.data.profile.bio,
           age: resp.data.profile.age,
         });
-        console.log(perfis);
       })
       .catch((erro) => {
-        console.log(erro);
+        alert(erro);
+      });
+  };
+
+  const matchPositivo = (objectId) => {
+    const url =
+      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/choose-person";
+    const body = {
+      id: objectId,
+      choice: true,
+    };
+
+    const headers = {
+      headers: {
+        "Content-Type": "application / json",
+      },
+    };
+
+    axios
+      .post(url, body, headers)
+      .then((resp) => {
+        console.log("matchPositivo: ", resp);
+        pegaPerfis();
+      })
+      .catch((erro) => {
+        alert(erro);
+      });
+  };
+
+  const matchNegativo = (objectId) => {
+    const url =
+      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/choose-person";
+    const body = {
+      id: objectId,
+      choice: false,
+    };
+
+    const headers = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .post(url, body, headers)
+      .then((resp) => {
+        console.log("matchNegativo: ", resp);
+        pegaPerfis();
+      })
+      .catch((erro) => {
+        alert(erro);
       });
   };
 
@@ -69,7 +118,7 @@ function Perfis() {
 
   const perfisParaExibir = perfis;
 
-  const { photo, name, age, bio } = perfisParaExibir;
+  const { photo, name, age, bio, id } = perfisParaExibir;
   return (
     <div>
       <Card>
@@ -80,8 +129,8 @@ function Perfis() {
         </div>
       </Card>
       <FooterBotoes>
-        <button>Não</button>
-        <button onClick={pegaPerfis}>Sim</button>
+        <button onClick={() => matchNegativo(id)}>Não</button>
+        <button onClick={() => matchPositivo(id)}>Sim</button>
       </FooterBotoes>
     </div>
   );

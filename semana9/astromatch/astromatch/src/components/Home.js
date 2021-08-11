@@ -33,14 +33,14 @@ const HeaderPrincipal = styled.div`
   }
 `;
 
-export function Home() {
+export function Home(props) {
   return (
     <TelaInteira>
       <TelaPrincipal>
         <HeaderPrincipal>
           <h2>Astromatch </h2>
 
-          <p>Troca página</p>
+          <p onClick={props.mudaParaMatches}>Troca página</p>
         </HeaderPrincipal>
         <Perfis />
       </TelaPrincipal>
