@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Perfis from "./Perfis";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const TelaInteira = styled.div`
   width: 100vw;
@@ -29,7 +31,7 @@ const HeaderPrincipal = styled.div`
   box-sizing: border-box;
   h2 {
     position: relative;
-    margin: auto 110px;
+    margin: auto 100px;
   }
 `;
 
@@ -40,7 +42,7 @@ export function Home(props) {
         <HeaderPrincipal>
           <h2>Astromatch </h2>
 
-          <p onClick={props.mudaParaMatches}>Troca página</p>
+          <Button variant="contained" onClick={props.mudaParaMatches}>Troca página</Button>
         </HeaderPrincipal>
         <Perfis />
       </TelaPrincipal>

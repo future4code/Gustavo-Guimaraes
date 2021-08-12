@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const Card = styled.div`
   height: 350px;
@@ -41,11 +43,12 @@ function Perfis() {
     photo: "",
     bio: "",
     age: 0,
+    id: "",
   });
 
   const pegaPerfis = () => {
     const url =
-      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/person";
+      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/gustavo-guimaraes/person";
 
     axios
       .get(url)
@@ -55,6 +58,7 @@ function Perfis() {
           photo: resp.data.profile.photo,
           bio: resp.data.profile.bio,
           age: resp.data.profile.age,
+          id: resp.data.profile.id,
         });
       })
       .catch((erro) => {
@@ -62,49 +66,40 @@ function Perfis() {
       });
   };
 
-  const matchPositivo = (objectId) => {
+  const matchPositivo = () => {
     const url =
-      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/choose-person";
+      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/gustavo-guimaraes/choose-person";
     const body = {
-      id: objectId,
+      id: perfis.id,
       choice: true,
     };
 
-    const headers = {
-      headers: {
-        "Content-Type": "application / json",
-      },
-    };
-
     axios
-      .post(url, body, headers)
+      .post(url, body)
       .then((resp) => {
-        console.log("matchPositivo: ", resp);
         pegaPerfis();
+        if (resp.data.isMatch === true) {
+          return alert("Foi um Match :)");
+        } else {
+          return alert("Não foi dessa vez");
+        }
       })
       .catch((erro) => {
         alert(erro);
       });
   };
 
-  const matchNegativo = (objectId) => {
+  const matchNegativo = () => {
     const url =
-      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/choose-person";
+      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/gustavo-guimaraes/choose-person";
     const body = {
-      id: objectId,
+      id: perfis.id,
       choice: false,
     };
 
-    const headers = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     axios
-      .post(url, body, headers)
+      .post(url, body)
       .then((resp) => {
-        console.log("matchNegativo: ", resp);
         pegaPerfis();
       })
       .catch((erro) => {
@@ -118,19 +113,23 @@ function Perfis() {
 
   const perfisParaExibir = perfis;
 
-  const { photo, name, age, bio, id } = perfisParaExibir;
+  const { photo, name, age, bio } = perfisParaExibir;
   return (
     <div>
       <Card>
         <img src={photo} />
         <div>
-          <span>{name} </span> <span> {age}</span>
+          <strong>
+            {" "}
+            <span>{name} - </span> <span> {age}</span>{" "}
+          </strong>
           <p>{bio}</p>
         </div>
       </Card>
       <FooterBotoes>
-        <button onClick={() => matchNegativo(id)}>Não</button>
-        <button onClick={() => matchPositivo(id)}>Sim</button>
+
+        <Button variant="contained" color="primary" onClick={matchNegativo}>Não é Meu tipo</Button>
+        <Button variant="contained" color="primary"onClick={matchPositivo}>Dar Match</Button>
       </FooterBotoes>
     </div>
   );
