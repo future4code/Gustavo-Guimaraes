@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 
 const Card = styled.div`
   height: 350px;
@@ -131,10 +133,10 @@ function Perfis() {
       </Card>
       <FooterBotoes>
         <Button variant="contained" color="secondary" onClick={matchNegativo}>
-          Não é Meu tipo
+          <ClearOutlinedIcon fontSize="large" />
         </Button>
         <Button variant="contained" color="secondary" onClick={matchPositivo}>
-          Dar Match
+          <FavoriteIcon fontSize="large" />
         </Button>
       </FooterBotoes>
     </div>

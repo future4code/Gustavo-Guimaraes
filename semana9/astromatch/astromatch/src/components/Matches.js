@@ -109,7 +109,7 @@ export function Matches(props) {
   const matches = listaMatches.map((match) => {
     return (
       <CardMatch>
-        <img src={match.photo} />
+        <img src={match.photo} alt="Foto de perfil do pretendente" />
         <span key={match.id}>{match.name}</span>
       </CardMatch>
     );

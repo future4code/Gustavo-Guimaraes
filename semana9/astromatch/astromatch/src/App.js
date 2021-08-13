@@ -1,5 +1,4 @@
 import { Home } from "./components/Home";
-import Perfis from "./components/Perfis";
 import React, { useState } from "react";
 import { Matches } from "./components/Matches";
 
@@ -25,6 +24,8 @@ function App() {
         return (
           <Matches mudaParaHome={mudaParaHome} paginaAtual={paginaAtual} />
         );
+      default:
+        return <Home />;
     }
   };
 
