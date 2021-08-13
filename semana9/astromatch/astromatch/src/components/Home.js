@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Perfis from "./Perfis";
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import DenseAppBar from "./Material/DenseAppBar";
 
 const TelaInteira = styled.div`
   width: 100vw;
@@ -22,16 +23,19 @@ const TelaPrincipal = styled.div`
   background-color: white;
 `;
 const HeaderPrincipal = styled.div`
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  border: 1px solid black;
+  height: 90px;
+  width: 400px;
   box-sizing: border-box;
-  h2 {
-    position: relative;
-    margin: auto 100px;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 7px;
+  }
+  button {
+    position: absolute;
+    top: 15px;
+    right: 10px;
   }
 `;
 
@@ -40,9 +44,10 @@ export function Home(props) {
     <TelaInteira>
       <TelaPrincipal>
         <HeaderPrincipal>
-          <h2>Astromatch </h2>
-
-          <Button variant="contained" onClick={props.mudaParaMatches}>Troca página</Button>
+          <DenseAppBar
+            mudaParaMatches={props.mudaParaMatches}
+            paginaAtual={props.paginaAtual}
+          />
         </HeaderPrincipal>
         <Perfis />
       </TelaPrincipal>

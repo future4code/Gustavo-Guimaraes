@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const Card = styled.div`
   height: 350px;
@@ -20,6 +20,9 @@ const Card = styled.div`
   img {
     height: 250px;
     width: 300px;
+  }
+  div {
+    margin: 10px;
   }
 `;
 
@@ -127,9 +130,12 @@ function Perfis() {
         </div>
       </Card>
       <FooterBotoes>
-
-        <Button variant="contained" color="primary" onClick={matchNegativo}>Não é Meu tipo</Button>
-        <Button variant="contained" color="primary"onClick={matchPositivo}>Dar Match</Button>
+        <Button variant="contained" color="secondary" onClick={matchNegativo}>
+          Não é Meu tipo
+        </Button>
+        <Button variant="contained" color="secondary" onClick={matchPositivo}>
+          Dar Match
+        </Button>
       </FooterBotoes>
     </div>
   );

@@ -17,14 +17,18 @@ function App() {
   const trocaPagina = () => {
     switch (paginaAtual) {
       case "Home":
-        return <Home mudaParaMatches={mudaParaMatches} />;
+        return (
+          <Home mudaParaMatches={mudaParaMatches} paginaAtual={paginaAtual} />
+        );
 
       case "Matches":
-        return <Matches mudaParaHome={mudaParaHome} />;
+        return (
+          <Matches mudaParaHome={mudaParaHome} paginaAtual={paginaAtual} />
+        );
     }
   };
 
-  return <div>{trocaPagina()}</div>;
+  return <div> {trocaPagina()} </div>;
 }
 
 export default App;
