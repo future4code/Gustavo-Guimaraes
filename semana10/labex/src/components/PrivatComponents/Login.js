@@ -1,6 +1,6 @@
 import Header from "../../otherComponents/Header";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
 
@@ -47,7 +47,7 @@ function Login() {
     setSenha(e.target.value);
   };
 
-  const goToDetails = () => {
+  const goToTrips = () => {
     history.push("/admin/trips/list");
   };
 
@@ -63,12 +63,19 @@ function Login() {
       .post(url, body)
       .then((resp) => {
         localStorage.setItem("token", resp.data.token);
-        goToDetails();
+        goToTrips();
       })
       .catch((error) => {
         console.log(error.response);
       });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      goToTrips();
+    }
+  }, []);
 
   return (
     <ContainerGeral>

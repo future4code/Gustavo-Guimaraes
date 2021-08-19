@@ -110,6 +110,7 @@ function ListTrip() {
         onClick1={goToApplication}
         onClick2={goToHome}
         showButton={true}
+        text="Nossas Viagens"
       />
       <ContainerProdutos>{viagensArray}</ContainerProdutos>
     </ContainerGeral>

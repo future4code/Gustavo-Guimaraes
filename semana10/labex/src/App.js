@@ -48,6 +48,9 @@ function App() {
         <Route exact path="/admin/trips/:id">
           <TripDetails />
         </Route>
+        <Route>
+          <p>Página não encontrada </p>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

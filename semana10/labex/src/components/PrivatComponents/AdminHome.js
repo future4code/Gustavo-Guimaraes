@@ -42,18 +42,28 @@ const ContainerViagem = styled.div`
     max-width: 40vw;
     text-align: center;
   }
+  button {
+    background-color: blue;
+    background-image: none;
+    width: 100%;
+    height: 40%;
+  }
 `;
 
 function AdminHome() {
   const history = useHistory();
   const [listaViagens, setListaViagens] = useState([]);
 
-  const goToApplication = () => {
-    history.push("/trips/application");
+  const goToCreate = () => {
+    history.push("/admin/trips/create");
   };
 
   const goToHome = () => {
     history.push("/");
+  };
+
+  const goToDetails = (id) => {
+    history.push(`/admin/trips/${id}`);
   };
 
   const getListOfTrips = async () => {
@@ -64,7 +74,6 @@ function AdminHome() {
       .get(url)
       .then((resp) => {
         setListaViagens(resp.data.trips);
-        console.log(listaViagens);
       })
       .catch((erro) => {
         console.log(erro);
@@ -72,7 +81,12 @@ function AdminHome() {
   };
 
   useEffect(() => {
-    getListOfTrips();
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      getListOfTrips();
+    } else {
+      goToHome();
+    }
   }, [setListaViagens]);
 
   const viagensArray = listaViagens.map((viagem) => {
@@ -97,6 +111,9 @@ function AdminHome() {
             <strong>Data: </strong>
             {viagem.date}
           </p>
+          <button onClick={() => goToDetails(viagem.id)}>
+            Detalhes da Viagem
+          </button>
         </div>
       </ContainerViagem>
     );
@@ -105,11 +122,12 @@ function AdminHome() {
   return (
     <ContainerGeral>
       <Header
-        botao1="Aplicar-se a Viagem!"
+        botao1="Criar nova viagem!"
         botao2="Pagina Inicial"
-        onClick1={goToApplication}
+        onClick1={goToCreate}
         onClick2={goToHome}
         showButton={true}
+        text="LabeX"
       />
       <ContainerProdutos>{viagensArray}</ContainerProdutos>
     </ContainerGeral>
