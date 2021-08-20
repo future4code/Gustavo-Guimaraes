@@ -46,11 +46,18 @@ const ContainerViagem = styled.div`
     background-color: blue;
     background-image: none;
     width: 100%;
-    height: 40%;
+    min-height: 60px;
   }
 `;
 
+const ContainerBotoes = styled.div`
+  display: flex;
+  background-color: white;
+  background-image: none;
+`;
+
 function AdminHome() {
+  const token = localStorage.getItem("token");
   const history = useHistory();
   const [listaViagens, setListaViagens] = useState([]);
 
@@ -80,6 +87,25 @@ function AdminHome() {
       });
   };
 
+  const deleteTrip = (id) => {
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/gustavo-guimaraes-lovelace/trips/${id}`;
+    const headers = {
+      headers: {
+        auth: token,
+      },
+    };
+
+    axios
+      .delete(url, headers)
+      .then((resp) => {
+        alert("Sucesso", resp);
+        getListOfTrips();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token !== null) {
@@ -87,7 +113,7 @@ function AdminHome() {
     } else {
       goToHome();
     }
-  }, [setListaViagens]);
+  }, []);
 
   const viagensArray = listaViagens.map((viagem) => {
     return (
@@ -111,9 +137,14 @@ function AdminHome() {
             <strong>Data: </strong>
             {viagem.date}
           </p>
-          <button onClick={() => goToDetails(viagem.id)}>
-            Detalhes da Viagem
-          </button>
+          <ContainerBotoes>
+            <button onClick={() => deleteTrip(viagem.id)}>
+              Deletar Viagem
+            </button>
+            <button onClick={() => goToDetails(viagem.id)}>
+              Visualizar detalhes
+            </button>
+          </ContainerBotoes>
         </div>
       </ContainerViagem>
     );

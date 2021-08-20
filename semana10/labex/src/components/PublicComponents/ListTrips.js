@@ -106,7 +106,7 @@ function ListTrip() {
     <ContainerGeral>
       <Header
         botao1="Aplicar-se a Viagem!"
-        botao2="Pagina Inicial"
+        botao2="Voltar"
         onClick1={goToApplication}
         onClick2={goToHome}
         showButton={true}
