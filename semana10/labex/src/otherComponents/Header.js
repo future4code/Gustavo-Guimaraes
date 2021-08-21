@@ -6,9 +6,11 @@ const ContainerBotoes = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100vw;
+  background-image: none;
+  background-color: #0c0a0a78;
+  font-family: "Dosis", sans-serif;
 
-  button,
-  h2 {
+  button {
     background-image: none;
     background-color: #0c0a0adf;
     color: white;
@@ -19,6 +21,18 @@ const ContainerBotoes = styled.div`
     cursor: pointer;
     font-size: 2vw;
     text-align: center;
+    font-family: "Dosis", sans-serif;
+  }
+
+  h2 {
+    font-size: 3vw;
+    text-align: center;
+    background-image: none;
+
+    color: white;
+    min-height: 10vh;
+    margin: 15px;
+    border-radius: 5%;
   }
 `;
 
@@ -27,9 +41,7 @@ function CreateTrip(props) {
     <ContainerBotoes>
       <button onClick={props.onClick1}>{props.botao1}</button>
       <h2>{props.text}</h2>
-      {props.showButton && (
-        <button onClick={props.onClick2}>{props.botao2} </button>
-      )}
+      <button onClick={props.onClick2}>{props.botao2} </button>
     </ContainerBotoes>
   );
 }

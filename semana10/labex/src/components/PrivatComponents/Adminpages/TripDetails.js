@@ -12,11 +12,11 @@ const ContainerViagem = styled.div`
   align-items: center;
   margin: 15px auto;
   background-image: none;
-  height: 40vh;
+  min-height: 40vh;
   width: 50vw;
   background-color: white;
   border-radius: 2%;
-
+  font-family: "Dosis", sans-serif;
   div {
     background-color: white;
     background-image: none;
@@ -32,12 +32,41 @@ const ContainerViagem = styled.div`
     text-align: center;
   }
   button {
-    background-color: blue;
+    min-width: 100%;
+    margin: 2vh;
     background-image: none;
-    width: 5vw;
-    height: 5vh;
-    margin: 10px;
+    background-color: #000000;
+    height: 50px;
+    color: white;
+    font-size: 1vw;
+    border-radius: 5px;
+    min-height: 50px;
   }
+`;
+
+const ContainerPendent = styled.div`
+  position: relative;
+  margin: auto;
+  width: 50vw;
+  background-image: none;
+  background-color: #0c0a0a78;
+  font-family: "Dosis", sans-serif;
+
+  h2 {
+    font-size: 3vw;
+    text-align: center;
+    background-image: none;
+
+    color: white;
+    min-height: 10vh;
+    margin: 15px;
+    border-radius: 5%;
+  }
+`;
+
+const ContainerBotoes = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 function TripDetails(props) {
@@ -130,14 +159,14 @@ function TripDetails(props) {
               {candidate.profession}{" "}
             </p>
           </div>
-          <div>
+          <ContainerBotoes>
             <button onClick={() => decideCandidate(candidate.id, false)}>
               Recusar
             </button>
             <button onClick={() => decideCandidate(candidate.id, true)}>
               Aceitar
             </button>
-          </div>
+          </ContainerBotoes>
         </ContainerViagem>
       </div>
     );
@@ -150,34 +179,17 @@ function TripDetails(props) {
         botao2="Home"
         onClick1={history.goBack}
         onClick2={goToHome}
-        showButton={true}
         text={viagem.name}
       />
       {viagem && (
         <ContainerViagem>
-          <div>
-            <h4>Aprovados:</h4>
-            <h4>{arrayApproved}</h4>
-          </div>
-          {/*           <div>
-            <p>
-              <strong>Destino: </strong>
-              {viagem.planet}
-            </p>
-            <p>
-              <strong>Duração: </strong>
-              {viagem.durationInDays}
-            </p>
-            <p>
-              <strong>Data: </strong>
-              {viagem.date}
-            </p>
-          </div> */}
+          <h2>Aprovados:</h2>
+          <h4>{arrayApproved}</h4>
         </ContainerViagem>
       )}
-      <div>
+      <ContainerPendent>
         <h2>Pendentes: </h2>
-      </div>
+      </ContainerPendent>
       {arrayCandidates}
     </div>
   );

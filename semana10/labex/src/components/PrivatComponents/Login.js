@@ -7,6 +7,7 @@ import { useHistory } from "react-router";
 const ContainerGeral = styled.div`
   width: 100vw;
   height: 100vh;
+  font-family: "Dosis", sans-serif;
 `;
 
 const ContainerPrincipal = styled.div`
@@ -28,9 +29,24 @@ const CardLogin = styled.div`
   background-color: #8080802d;
   h2,
   input {
+    width: 50vw;
+    margin: 2vh;
     background-image: none;
     background-color: white;
-    margin: 15px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+  }
+  button {
+    width: 20vw;
+    margin: 12vh;
+    background-image: none;
+    background-color: #000000;
+    height: 50px;
+    color: white;
+    font-size: 1vw;
+    border-radius: 5px;
   }
 `;
 
@@ -79,10 +95,15 @@ function Login() {
 
   return (
     <ContainerGeral>
-      <Header botao1="Voltar" />
+      <Header
+        botao1="Voltar"
+        onClick1={() => history.goBack()}
+        text="LogIn"
+        botao2="Nossas Viagens"
+        onClick2={() => history.push("/trips/list")}
+      />
       <ContainerPrincipal>
         <CardLogin>
-          <h2> Login: </h2>
           <input
             placeholder="Email"
             type="email"
@@ -95,7 +116,9 @@ function Login() {
             value={senha}
             onChange={changeSenha}
           />
-          <input type="submit" onClick={logIn} />
+          <button type="submit" onClick={logIn}>
+            Logar
+          </button>
         </CardLogin>
       </ContainerPrincipal>
     </ContainerGeral>

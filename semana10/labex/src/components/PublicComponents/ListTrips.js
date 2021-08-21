@@ -7,6 +7,7 @@ import Header from "../../otherComponents/Header";
 const ContainerGeral = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: "Dosis", sans-serif;
 `;
 
 const ContainerProdutos = styled.div`
@@ -18,6 +19,7 @@ const ContainerProdutos = styled.div`
   height: 100%;
   width: 100vw;
   margin: 15px;
+  font-family: "Dosis", sans-serif;
 `;
 
 const ContainerViagem = styled.div`
@@ -105,11 +107,10 @@ function ListTrip() {
   return (
     <ContainerGeral>
       <Header
-        botao1="Aplicar-se a Viagem!"
-        botao2="Voltar"
-        onClick1={goToApplication}
-        onClick2={goToHome}
-        showButton={true}
+        botao2="Aplicar-se a Viagem!"
+        botao1="Voltar"
+        onClick2={goToApplication}
+        onClick1={goToHome}
         text="Nossas Viagens"
       />
       <ContainerProdutos>{viagensArray}</ContainerProdutos>

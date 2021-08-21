@@ -11,11 +11,12 @@ const ContainerGeral = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  font-family: "Dosis", sans-serif;
 
   h3 {
     background-image: none;
     background-color: white;
-    width: 60vw;
+    width: 50vw;
     height: 70px;
     text-align: center;
     margin: 30px;
@@ -25,14 +26,40 @@ const ContainerGeral = styled.div`
 const ContainerForm = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
+  background-image: none;
+  background-color: #ffffff0;
+  margin: 5vh;
 
   input,
-  select,
-  button {
-    width: 60vw;
+  select {
+    width: 50vw;
     margin: 2vh;
     background-image: none;
     background-color: white;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+  button {
+    width: 20vw;
+    margin: 2vh;
+    background-image: none;
+    background-color: #000000;
+    height: 50px;
+    color: white;
+    font-size: 1vw;
+    border-radius: 5px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #80808047;
+    background-image: none;
+    align-items: center;
   }
 `;
 
@@ -43,7 +70,7 @@ function Aplications() {
 
   const { form, onChange, cleanFields } = useForm({
     name: "",
-    age: 0,
+    age: "",
     applicationText: "",
     profession: "",
     country: "",
@@ -108,12 +135,8 @@ function Aplications() {
         botao2="Pagina Inicial"
         onClick1={() => history.goBack()}
         onClick2={() => history.push("/")}
-        showButton={true}
-        text="LabeX"
+        text=" Aplique-se para a viagem!"
       />
-      <div>
-        <h3> Aplique-se para a viagem! </h3>
-      </div>
       <ContainerForm>
         <form onSubmit={toApply}>
           {listaViagens && (
@@ -123,6 +146,7 @@ function Aplications() {
             </select>
           )}
           <br />
+
           <input
             name={"name"}
             value={form.name}

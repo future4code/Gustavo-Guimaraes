@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../../../otherComponents/Header";
 import useForm from "../../../hooks/useForm";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const ContainerGeral = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ const ContainerGeral = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  font-family: "Dosis", sans-serif;
 
   h3 {
     background-image: none;
@@ -23,19 +25,46 @@ const ContainerGeral = styled.div`
 const ContainerForm = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
+  background-image: none;
+  background-color: #ffffff0;
+  margin: 5vh;
 
   input,
-  select,
-  button {
-    width: 60vw;
+  select {
+    width: 50vw;
     margin: 2vh;
     background-image: none;
     background-color: white;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+  button {
+    width: 20vw;
+    margin: 2vh;
+    background-image: none;
+    background-color: #000000;
+    height: 50px;
+    color: white;
+    font-size: 1vw;
+    border-radius: 5px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #80808047;
+    background-image: none;
+    align-items: center;
   }
 `;
 
 function CreateTrip() {
   const token = localStorage.getItem("token");
+  const history = useHistory();
 
   const { form, onChange, cleanFields } = useForm({
     name: "",
@@ -74,10 +103,14 @@ function CreateTrip() {
 
   return (
     <ContainerGeral>
-      <Header />
-      <div>
-        <h3> Criar nova viagem</h3>
-      </div>
+      <Header
+        text="Criar nova viagem"
+        botao1="Voltar"
+        onClick1={() => history.goBack()}
+        botao2="Página Inicial"
+        onClick2={() => history.push("/")}
+      />
+
       <ContainerForm>
         <form onSubmit={toApply}>
           <br />

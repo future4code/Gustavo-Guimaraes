@@ -7,6 +7,7 @@ import Header from "../../otherComponents/Header";
 const ContainerGeral = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: "Dosis", sans-serif;
 `;
 
 const ContainerProdutos = styled.div`
@@ -42,10 +43,16 @@ const ContainerViagem = styled.div`
     max-width: 40vw;
     text-align: center;
   }
+
   button {
-    background-color: blue;
-    background-image: none;
     width: 100%;
+    margin: 2vh;
+    background-image: none;
+    background-color: #000000;
+    height: 50px;
+    color: white;
+    font-size: 1vw;
+    border-radius: 5px;
     min-height: 60px;
   }
 `;
@@ -157,7 +164,6 @@ function AdminHome() {
         botao2="Pagina Inicial"
         onClick1={goToCreate}
         onClick2={goToHome}
-        showButton={true}
         text="LabeX"
       />
       <ContainerProdutos>{viagensArray}</ContainerProdutos>

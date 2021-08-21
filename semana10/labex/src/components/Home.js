@@ -1,4 +1,3 @@
-import "./Home.css";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
@@ -9,7 +8,7 @@ const ContainerGeral = styled.div`
 
   height: 100vh;
   width: 100%;
-
+  font-family: "Dosis", sans-serif;
   color: white;
 
   h1,
@@ -22,7 +21,7 @@ const ContainerGeral = styled.div`
   }
 
   h1 {
-    font-size: 9vw;
+    font-size: 12vw;
   }
 
   h3 {
