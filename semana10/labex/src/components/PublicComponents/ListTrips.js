@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "../../otherComponents/Header";
+import Loading from "../../otherComponents/Loading";
 
 const ContainerGeral = styled.div`
   display: flex;
@@ -66,10 +67,9 @@ function ListTrip() {
       .get(url)
       .then((resp) => {
         setListaViagens(resp.data.trips);
-        console.log(listaViagens);
       })
       .catch((erro) => {
-        console.log(erro);
+        alert(erro);
       });
   };
 
@@ -113,7 +113,11 @@ function ListTrip() {
         onClick1={goToHome}
         text="Nossas Viagens"
       />
-      <ContainerProdutos>{viagensArray}</ContainerProdutos>
+      {!viagensArray ? (
+        <Loading />
+      ) : (
+        <ContainerProdutos>{viagensArray}</ContainerProdutos>
+      )}
     </ContainerGeral>
   );
 }

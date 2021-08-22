@@ -96,7 +96,7 @@ function Aplications() {
         setListaViagens(resp.data.trips);
       })
       .catch((erro) => {
-        console.log(erro);
+        alert(erro);
       });
   };
 
@@ -107,11 +107,10 @@ function Aplications() {
     axios
       .post(url, body)
       .then((resp) => {
-        console.log(resp);
         alert("Sucesso");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -125,8 +124,7 @@ function Aplications() {
 
   useEffect(() => {
     getListOfTrips();
-    console.log(viagemId);
-  }, [viagemId]);
+  }, []);
 
   return (
     <ContainerGeral>

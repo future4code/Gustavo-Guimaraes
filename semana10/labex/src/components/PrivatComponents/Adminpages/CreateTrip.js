@@ -3,6 +3,7 @@ import Header from "../../../otherComponents/Header";
 import useForm from "../../../hooks/useForm";
 import axios from "axios";
 import { useHistory } from "react-router";
+import { useEffect } from "react";
 
 const ContainerGeral = styled.div`
   display: flex;
@@ -71,7 +72,7 @@ function CreateTrip() {
     planet: "",
     date: "",
     description: "",
-    durationInDays: 0,
+    durationInDays: "",
   });
 
   const toApply = (event) => {
@@ -94,12 +95,18 @@ function CreateTrip() {
     axios
       .post(url, body, headers)
       .then((resp) => {
-        console.log(resp);
+        alert(resp);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
+
+  useEffect(() => {
+    if (token === null) {
+      history.push("/");
+    }
+  }, []);
 
   return (
     <ContainerGeral>

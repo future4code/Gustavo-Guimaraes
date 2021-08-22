@@ -90,7 +90,7 @@ function AdminHome() {
         setListaViagens(resp.data.trips);
       })
       .catch((erro) => {
-        console.log(erro);
+        alert(erro);
       });
   };
 
@@ -109,7 +109,7 @@ function AdminHome() {
         getListOfTrips();
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 

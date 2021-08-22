@@ -82,7 +82,7 @@ function Login() {
         goToTrips();
       })
       .catch((error) => {
-        console.log(error.response);
+        alert(error.response);
       });
   };
 

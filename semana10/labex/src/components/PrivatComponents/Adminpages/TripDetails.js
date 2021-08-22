@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "../../../otherComponents/Header";
+import Loading from "../../../otherComponents/Loading";
 
 const ContainerViagem = styled.div`
   display: flex;
@@ -92,7 +93,7 @@ function TripDetails(props) {
       setCandidates(resp.data.trip.candidates);
       setApproved(resp.data.trip.approved);
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
@@ -110,11 +111,10 @@ function TripDetails(props) {
     axios
       .put(url, body, headers)
       .then((resp) => {
-        console.log(resp);
         getTripsDetails();
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -126,7 +126,6 @@ function TripDetails(props) {
     const token = localStorage.getItem("token");
     if (token !== null) {
       getTripsDetails();
-      console.log(viagem);
     } else {
       goToHome();
     }
@@ -190,7 +189,7 @@ function TripDetails(props) {
       <ContainerPendent>
         <h2>Pendentes: </h2>
       </ContainerPendent>
-      {arrayCandidates}
+      {!viagem ? <Loading /> : arrayCandidates}
     </div>
   );
 }
