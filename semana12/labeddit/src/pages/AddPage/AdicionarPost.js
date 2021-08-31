@@ -1,11 +1,13 @@
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 function AdicionarPost() {
-    return (
-      <div >
-        <p>oi</p>
-      </div>
-    );
-  }
-  
-  export default AdicionarPost;
-  
+  useProtectedPage();
+
+  return (
+    <div>
+      <p>oi</p>
+    </div>
+  );
+}
+
+export default AdicionarPost;
