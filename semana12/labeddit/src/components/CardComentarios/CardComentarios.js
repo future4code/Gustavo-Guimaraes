@@ -1,11 +1,10 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { goToDetalhes } from "../../routes/coordinator";
 
 const ContainerCard = styled.div`
   background-color: white;
   border-radius: 10px;
-  height: 50vh;
+  height: 25vh;
   width: 70vw;
   margin: 16px;
   display: flex;
@@ -47,7 +46,7 @@ const ContainerReacoes = styled.div`
   box-sizing: border-box;
 `;
 
-function CardPost(props) {
+function CardComentarios(props) {
   const history = useHistory();
 
   return (
@@ -55,18 +54,13 @@ function CardPost(props) {
       <ContainerUser>
         <h1>{props.usuario}</h1>
       </ContainerUser>
-      <ContainerTitulo>
-        <h2>{props.titulo} </h2>
-        {props.conteudo}
-      </ContainerTitulo>
+      <ContainerTitulo>{props.conteudo}</ContainerTitulo>
       <ContainerReacoes>
         <p>curtidas {props.numCurtidas} </p>
-        <p onClick={() => goToDetalhes(history, props.id)}>
-          {props.numComentarios} comentários
-        </p>
+        <p>comentários {props.numComentarios}</p>
       </ContainerReacoes>
     </ContainerCard>
   );
 }
 
-export default CardPost;
+export default CardComentarios;

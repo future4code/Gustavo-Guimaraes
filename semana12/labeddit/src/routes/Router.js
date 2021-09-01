@@ -21,7 +21,7 @@ function Router({ buttonText, setButtonText }) {
       <Route exact path="/detalhe/:id">
         <DetalhesPost />
       </Route>
-      <Route exact path="/adicionar-post ">
+      <Route exact path="/adicionar-post">
         <AdicionarPost />
       </Route>
       <Route>
