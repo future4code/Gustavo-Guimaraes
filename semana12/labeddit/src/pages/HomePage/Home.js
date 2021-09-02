@@ -16,7 +16,7 @@ const ContainerNovoPost = styled.div`
   background-color: white;
   border-radius: 10px;
   min-height: 20vh;
-  width: 70vw;
+  width: 50vw;
   margin: 16px;
   display: flex;
   flex-direction: column;
@@ -33,14 +33,14 @@ const ContainerNovoPost = styled.div`
 `;
 
 const InputTitulo = styled(Input)`
-  width: 15vw;
+  width: 13vw;
   height: 8vh;
   color: black;
   margin-right: 8px;
 `;
 
 const InputTexto = styled(Input)`
-  width: 40vw;
+  width: 30vw;
   height: 8vh;
   color: black;
   margin-right: 8px;
@@ -57,9 +57,10 @@ const ContainerGeral = styled.div`
 
 const ContainerPosts = styled.div`
   height: 100%;
-  width: 70vw;
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 function Home() {
@@ -69,6 +70,7 @@ function Home() {
     title: "",
     body: "",
   });
+  console.log(data);
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -104,6 +106,7 @@ function Home() {
           numCurtidas={post.voteSum}
           numComentarios={post.commentCount}
           id={post.id}
+          buttonHome={true}
         />
       );
     });

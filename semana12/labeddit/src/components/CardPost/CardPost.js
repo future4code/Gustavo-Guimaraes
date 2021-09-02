@@ -1,12 +1,17 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { goToDetalhes } from "../../routes/coordinator";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import CommentIcon from "@material-ui/icons/Comment";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
 
 const ContainerCard = styled.div`
   background-color: white;
   border-radius: 10px;
-  height: 50vh;
-  width: 70vw;
+  height: 60vh;
+  width: 50vw;
   margin: 16px;
   display: flex;
   flex-direction: column;
@@ -47,8 +52,38 @@ const ContainerReacoes = styled.div`
   box-sizing: border-box;
 `;
 
+const ContainerCurtidas = styled.div`
+  display: flex;
+  align-items: center;
+  p {
+    margin: 3px;
+  }
+  cursor: pointer;
+`;
+
 function CardPost(props) {
   const history = useHistory();
+
+  const votarNoPost = (id, choice) => {
+    axios
+      .post(
+        `${BASE_URL}/posts/${id}/votes`,
+        {
+          direction: choice,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <ContainerCard>
@@ -60,10 +95,17 @@ function CardPost(props) {
         {props.conteudo}
       </ContainerTitulo>
       <ContainerReacoes>
-        <p>curtidas {props.numCurtidas} </p>
-        <p onClick={() => goToDetalhes(history, props.id)}>
-          {props.numComentarios} comentários
-        </p>
+        <ContainerCurtidas>
+          <ArrowUpwardIcon onClick={() => votarNoPost(props.id, 1)} />
+          <p> {props.numCurtidas} </p>
+          <ArrowDownwardIcon onClick={() => votarNoPost(props.id, -1)} />
+        </ContainerCurtidas>
+        {props.buttonHome && (
+          <ContainerCurtidas onClick={() => goToDetalhes(history, props.id)}>
+            <CommentIcon />
+            <p>{props.numComentarios} comentários</p>
+          </ContainerCurtidas>
+        )}
       </ContainerReacoes>
     </ContainerCard>
   );

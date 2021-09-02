@@ -1,11 +1,15 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import { BASE_URL } from "../../constants/urls";
+import axios from "axios";
 
 const ContainerCard = styled.div`
   background-color: white;
   border-radius: 10px;
   height: 25vh;
-  width: 70vw;
+  width: 50vw;
   margin: 16px;
   display: flex;
   flex-direction: column;
@@ -22,7 +26,6 @@ const ContainerCard = styled.div`
 `;
 
 const ContainerUser = styled.div`
-  border: 1px solid black;
   border-radius: 10px;
   width: 100%;
   display: flex;
@@ -44,10 +47,33 @@ const ContainerReacoes = styled.div`
   border-radius: 10px;
   padding: 8px;
   box-sizing: border-box;
+  cursor: pointer;
+  align-items: center;
 `;
 
 function CardComentarios(props) {
   const history = useHistory();
+
+  const votarNoPost = (id, choice) => {
+    axios
+      .post(
+        `${BASE_URL}/comments/${id}/votes`,
+        {
+          direction: choice,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <ContainerCard>
@@ -56,8 +82,9 @@ function CardComentarios(props) {
       </ContainerUser>
       <ContainerTitulo>{props.conteudo}</ContainerTitulo>
       <ContainerReacoes>
-        <p>curtidas {props.numCurtidas} </p>
-        <p>comentários {props.numComentarios}</p>
+        <ArrowUpwardIcon onClick={() => votarNoPost(props.id, 1)} />
+        <p> {props.numCurtidas} </p>
+        <ArrowDownwardIcon onClick={() => votarNoPost(props.id, -1)} />
       </ContainerReacoes>
     </ContainerCard>
   );

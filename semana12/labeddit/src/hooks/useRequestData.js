@@ -18,7 +18,7 @@ const useRequestData = (initialData, url) => {
         console.log(error);
         alert("Ocorreu um erro, tente novamente");
       });
-  }, [url]);
+  }, [data, url]);
 
   return data;
 };

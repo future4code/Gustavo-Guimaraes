@@ -9,12 +9,14 @@ import CardPost from "../../components/CardPost/CardPost";
 import { useParams } from "react-router";
 import CardComentarios from "../../components/CardComentarios/CardComentarios";
 import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const ContainerNovoPost = styled.div`
   background-color: white;
   border-radius: 10px;
   min-height: 20vh;
-  width: 70vw;
+  width: 50vw;
   margin: 16px;
   display: flex;
   flex-direction: column;
@@ -50,6 +52,7 @@ function DetalhesPost() {
   useProtectedPage();
   const params = useParams();
   const [form, onChange, clear] = useForm({ body: "" });
+  const [postCorreto, setPostCorreto] = useState("");
   const data = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`);
   console.log(params);
 
@@ -58,6 +61,33 @@ function DetalhesPost() {
     comentar();
   };
 
+  const pegarPost = () => {
+    axios
+      .get(`${BASE_URL}/posts/`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((resp) => {
+        setPostCorreto(resp.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  /*   const pegarComentarios = () => {
+    axios
+      .get(`${BASE_URL}/posts/${params.id}/comments`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((resp) => {
+
+      });
+  };
+ */
   const comentar = () => {
     axios
       .post(`${BASE_URL}/posts/${params.id}/comments`, form, {
@@ -74,6 +104,12 @@ function DetalhesPost() {
       });
   };
 
+  const postExibido =
+    postCorreto &&
+    postCorreto.filter((post) => {
+      return post.id === params.id;
+    });
+
   const arrayComentarios =
     data &&
     data.map((post) => {
@@ -85,13 +121,27 @@ function DetalhesPost() {
           usuario={post.username}
           numCurtidas={post.voteSum}
           numComentarios={post.commentCount}
+          id={post.id}
         />
       );
     });
 
+  useEffect(() => {
+    pegarPost();
+  }, []);
+
   return (
     <ContainerGeral>
-      <CardPost />
+      {postExibido && (
+        <CardPost
+          key={postExibido[0].id}
+          conteudo={postExibido[0].body}
+          titulo={postExibido[0].title}
+          usuario={postExibido[0].username}
+          numCurtidas={postExibido[0].voteSum}
+          numComentarios={postExibido[0].commentCount}
+        />
+      )}
 
       <ContainerNovoPost>
         <h1>Novo Comentário:</h1>
