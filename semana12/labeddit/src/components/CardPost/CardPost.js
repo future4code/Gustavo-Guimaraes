@@ -79,6 +79,7 @@ function CardPost(props) {
       )
       .then((resp) => {
         console.log(resp);
+        props.pegaPost(`${BASE_URL}/posts`);
       })
       .catch((error) => {
         console.log(error);

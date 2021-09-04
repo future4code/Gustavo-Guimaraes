@@ -4,7 +4,7 @@ import axios from "axios";
 const useRequestData = (initialData, url) => {
   const [data, setData] = useState(initialData);
 
-  useEffect(() => {
+  const pegaPost = (url) => {
     axios
       .get(url, {
         headers: {
@@ -18,9 +18,13 @@ const useRequestData = (initialData, url) => {
         console.log(error);
         alert("Ocorreu um erro, tente novamente");
       });
-  }, [data, url]);
+  };
 
-  return data;
+  useEffect(() => {
+    pegaPost(url);
+  }, [url]);
+
+  return { data, pegaPost };
 };
 
 export default useRequestData;

@@ -69,6 +69,7 @@ function CardComentarios(props) {
       )
       .then((resp) => {
         console.log(resp);
+        props.pegaPost(`${BASE_URL}/posts/${props.params}/comments`);
       })
       .catch((error) => {
         console.log(error);
