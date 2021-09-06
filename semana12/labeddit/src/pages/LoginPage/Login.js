@@ -1,5 +1,5 @@
 import useForm from "../../hooks/useForm";
-
+import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import { goToCadastro, goToHome } from "../../routes/coordinator";
 import { BASE_URL } from "../../constants/urls";
@@ -39,7 +39,6 @@ function Login({ buttonText, setButtonText }) {
       });
   };
 
-  
   return (
     <ContainerGeral>
       <h1>Login</h1>
